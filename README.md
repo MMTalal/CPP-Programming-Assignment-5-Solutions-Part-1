@@ -201,5 +201,4 @@ This repository contains solutions to Assignment 5 tasks focusing on **arrays**,
 3. Submit a pull request.  
 
 ## License  
-This project is licensed under the MIT License.  
-[file content end]
+This project is licensed under the MIT License.
