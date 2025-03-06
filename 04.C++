@@ -1,47 +1,55 @@
-#include <iostream>  // Include the input-output stream library for using cout and cin
-#include <string>    // Include string library to use string-related functions
+#include <iostream>  // Include the I/O stream library for input/output operations
+#include <string>    // Include string library for string manipulation
 
 using namespace std;
 
-// Function to return a string containing all occurrences of a specified character in a given text
+// Function to find and return the most frequently repeated character in a string
 // Parameters:
-//   text  - The input string provided by the user
-//   letter - The character to check and extract from the text
+//   text - The input string to analyze
 // Returns:
-//   A string containing all occurrences of 'letter' found in 'text'
-string CharRepeated(string text, char letter) {
-    string result = "";  // Initialize an empty string to store the repeated characters
-
-    // Loop through each character in the input string
-    for (char i : text) 
+//   The character that appears most frequently in the input string
+char CharRepeated(string text) {
+    int max = 0;        // Track the highest occurrence count
+    char letter;        // Store the most repeated character
+    
+    // Outer loop: process each character in the string
+    for (int i = 0; i < text.size(); i++) 
     {
-        if (i == letter) 
-        {   // Check if the current character matches the given letter
-            result += letter; // Append the letter to the result string
+        int count = 0;  // Counter for current character's occurrences
+        
+        // Inner loop: count matches of the current character
+        for (int j = 0; j < text.size(); j++) 
+        {   
+            // Compare with all characters in the string
+            if (text[i] == text[j])
+            {
+                count++;
+            }
+        }
+        
+        // Update tracking variables if current character has higher count
+        if (count > max)
+        {
+            max = count;
+            letter = text[i];
         }
     }
-
-    return result;  // Return the final string containing repeated occurrences of the letter
+    
+    return letter;  // Return the most frequently occurring character
 }
 
 int main() {
-    // Display the assignment title and description.
+    // Display program information
     cout << "This is Assignment No. 4;" << endl << endl;
-    cout << "Write a function that takes a string and returns the most repeated character." << endl;
+    cout << "Program that finds the most repeated character in a string." << endl;
 
-    // Prompt the user to input a string
+    // Get user input
     cout << "Input the text you want: ";
     string text;  
-    cin >> text;  // Read the input string from the user
+    cin >> text;  // Read user's input string
 
-    // Prompt the user to input a single character to check for repetition
-    cout << "Input the letter you want to check if it's repeated: ";
-    char letter;  
-    cin >> letter; // Read a single character from the user
-
-    // Call the function to get repeated occurrences and display the result
-    string result = CharRepeated(text, letter);
-    cout << "Output: " << result << endl;  // Output the result string
-
-    return 0;  // Indicate successful program termination
+    // Find and display the result
+    cout << CharRepeated(text);
+    
+    return 0;  // End of program
 }
