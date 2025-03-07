@@ -6,17 +6,25 @@ using namespace std; // Allow usage of standard namespace to avoid writing std::
 // Function to count the total number of words in a string
 int WordsCount(string text) 
 {
-    int count = 1; // Start at 1 because there's at least one word
+    int count = 0; // Start at 0 because there's at least one word
 
-    // Loop through each character in the string
-    for (int i = 0; i < text.size(); i++) 
+    // Loop through each character in the string, except the last one
+    for (int i = 0; i < text.size() - 1; i++) 
     { 
-        if (text[i] == ' ') // Check if the current character is a space
+        // Check if the current character is a space and the next character is not a space
+        // This identifies word boundaries (i.e., transitions from space to a letter)
+        if (text[i] == ' ' && text[i + 1] != ' ') 
         {
-            count++; // Increment word count when encountering a space
+            count++; // Increment the word count when a new word starts
         }
     }
-    
+
+    // If the first character is not a space, count the first word
+    if (text[0] != ' ')
+    {
+        count++;
+    }
+
     return count; // Return the total word count
 }
 
